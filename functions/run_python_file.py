@@ -36,3 +36,28 @@ def run_python_file(working_directory: str, file_path: str, args: list[str] | No
 
     except Exception as e:
          return(f"Error: executing Python file: {e}")
+
+schema_run_python_file = {
+    "type": "function",
+    "function": {
+        "name": "run_python_file",
+        "description": "Run the python file in a specified file/directory relative to the working directory, running the file and returning its output",
+        "parameters": {
+            "type": "object",
+            "required": ["file_path"],
+            "properties": {
+                 "args": {
+                    "type": "array",
+                    "description": "Optional arguments to pass to the script",
+                    "items": {
+                        "type": "string",
+                    },
+                },
+                "file_path": {
+                    "type": "string",
+                    "description": "File path to run python file from, relative to the working directory (default is the working directory itself)",
+                },
+            },
+        },
+    },
+}
